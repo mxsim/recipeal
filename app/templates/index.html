@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Search Section -->
+<section class="search-section">
+    <div class="container">
+        <div class="search-container">
+            <h1 class="text-center mb-4">Discover Amazing Recipes</h1>
+            <form action="" method="GET">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control search-input" placeholder="Search for recipes, ingredients, or chefs..." aria-label="Search recipes">
+                    <button class="btn btn-yellow" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Meal Type Filters -->
+<section class="meal-filters">
+    <div class="container">
+        <div class="filter-scroll">
+            <button class="filter-btn active" data-filter="all">All Recipes</button>
+            <button class="filter-btn" data-filter="vegan">🌱 Vegan</button>
+            <button class="filter-btn" data-filter="vegetarian">🥬 Vegetarian</button>
+            <button class="filter-btn" data-filter="carnivore">🥩 Carnivore</button>
+            <button class="filter-btn" data-filter="quick">⚡ Quick & Easy</button>
+            <button class="filter-btn" data-filter="dessert">🍰 Dessert</button>
+            <button class="filter-btn" data-filter="breakfast">🍳 Breakfast</button>
+        </div>
+    </div>
+</section>
+
+<!-- Recipe Grid -->
+<section class="recipe-grid-section">
+    <div class="container">
+        <div class="recipe-grid" id="recipeGrid">
+            {% for recipe in recipes %}
+            <div class="recipe-card" data-meal-type="{{ recipe.meal_type }}">
+                <img src="{{ recipe.image_path or 'https://via.placeholder.com/300x200?text=No+Image' }}" 
+                     alt="{{ recipe.title }}" class="recipe-image">
+                <div class="recipe-info">
+                    <h3 class="recipe-title">{{ recipe.title }}</h3>
+                    <div class="recipe-rating">
+                        ⭐ {{ "4.5" }}
+                    </div>
+                </div>
+                <a href="" class="stretched-link"></a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Empty State -->
+        {% if not recipes %}
+        <div class="text-center py-5">
+            <h3>No recipes found</h3>
+            <p class="text-muted">Be the first to share a delicious recipe!</p>
+            <a href="" class="btn btn-yellow">Create Your First Recipe</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

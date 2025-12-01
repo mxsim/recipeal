@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/fridge.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="fridge-page">
+  <!-- INGREDIENT PANEL (TOP OF MAIN AREA) -->
+  <div class="fridge-page__panel" role="region" aria-label="Ingredient panel">
+    <button class="fridge-page__create-btn" id="fridgeCreateBtn">
+      + Create
+    </button>
+
+    <div class="fridge-page__inputs">
+      <div class="fridge-page__input-wrap">
+        <input
+          type="text"
+          id="ingredientSearch"
+          class="fridge-page__input fridge-page__ingredient-name"
+          placeholder="Ingredient name"
+        />
+        <ul
+          class="fridge-page__autocomplete"
+          id="ingredientSuggestions"
+          aria-hidden="true"
+        ></ul>
+      </div>
+
+      <input
+        type="number"
+        id="ingredientAmount"
+        class="fridge-page__input fridge-page__amount"
+        placeholder="Amount"
+      />
+
+      <select
+        id="ingredientUnit"
+        class="fridge-page__select fridge-page__measurement"
+        aria-label="Measurement unit"
+      >
+        <option value="g">g</option>
+        <option value="ml">ml</option>
+        <option value="pcs">pcs</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- MAIN + PANE WRAPPER -->
+  <div class="fridge-page__body">
+    <!-- MAIN (left) -->
+    <div class="fridge-page__main" role="main">
+      <div class="fridge-page__table" id="fridgeTable" aria-live="polite">
+        <!-- JS will populate .fridge-page__row elements here -->
+      </div>
+
+      <div class="fridge-page__actions">
+        <button class="fridge-page__cook-btn" id="cookBtn">
+          🥘 What can I cook?
+        </button>
+      </div>
+    </div>
+
+    <!-- PANE (right) -->
+    <aside
+      class="fridge-page__pane"
+      id="fridgeTotals"
+      role="complementary"
+      aria-label="Fridge totals"
+    >
+      <h3 class="fridge-page__pane-title">Total in Fridge</h3>
+      <div class="fridge-page__totals" id="totalsContainer">
+        <!-- JS will fill totals here -->
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/fridge.js') }}"></script>
+{% endblock %}

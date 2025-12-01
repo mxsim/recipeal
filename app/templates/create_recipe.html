@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block head %}
+
+{% endblock %} {% block content %}
+<div class="create-recipe-page">
+
+  <h1 class="create-recipe__title">Create a New Recipe</h1>
+
+  <form id="create-recipe-form" enctype="multipart/form-data">
+
+    <!-- Left column -->
+    <div class="create-recipe__grid">
+
+      <div class="create-recipe__main">
+
+        <label for="recipe_name">Recipe Name</label>
+        <input type="text" id="recipe_name" name="recipe_name" placeholder="e.g. Creamy Mushroom Pasta" required>
+
+        <label for="description">Short Description</label>
+        <textarea id="description" name="description" rows="3" placeholder="Write a brief intro..." required></textarea>
+
+        <label for="ingredients">Ingredients</label>
+        <textarea id="ingredients" name="ingredients" rows="6" placeholder="• 400 g Pasta;
+• 1 tbsp Olive Oil;
+• Salt to taste." required></textarea>
+
+        <label for="instructions">Instructions</label>
+        <textarea id="instructions" name="instructions" rows="8" placeholder="Step 1: Boil pasta...
+Step 2: Prepare sauce..." required></textarea>
+
+      </div>
+
+      <!-- Right column -->
+      <div class="create-recipe__side">
+
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="">Select a category</option>
+          <option value="main">Main Course</option>
+          <option value="dessert">Dessert</option>
+          <option value="appetizer">Appetizer</option>
+          <option value="drink">Drink</option>
+        </select>
+
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <div class="create-recipe__preview">
+          <img id="recipe_preview" src="/static/images/default_food.png" alt="Recipe preview">
+        </div>
+
+        <button type="submit" class="btn btn--primary">Create Recipe</button>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/create_recipe.js') }}"></script>
+{% endblock %}

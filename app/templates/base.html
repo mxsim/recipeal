@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReciPeal - You love food and we know it! </title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fridge.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recipe.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_recipe.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/feed.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/book.css') }}">
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-orange">
+            <div class="container">
+                <!-- Left: Logo -->
+                <a class="navbar-brand" href="{{ url_for('feed.feed_page') }}">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ReciPeal Logo" class="logo-img">
+    <span class="logo-text">
+        <span class="logo-reci">Reci</span><span class="logo-peal">Peal</span>
+    </span>
+</a>
+
+
+                <!-- Middle: Navigation -->
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('recipe.create_recipe_page') }}">Kitchen</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('book.book_page') }}">Book</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('feed.feed_page') }}">Feed</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.fridge') }}">Fridge</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <!-- Right: No auth section - completely empty -->
+                <div class="navbar-nav">
+                    <!-- No user menu - no sign in button -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-orange">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start">
+                    <span class="text-white">&copy; 2025 RecipePeal. All rights reserved.</span>
+                </div>
+                <div class="col-md-4 text-center">
+    <div class="footer-logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ReciPeal Logo" class="logo-img">
+    </div>
+</div>
+
+                <div class="col-md-4 text-center text-md-end">
+                    <!-- <span class="text-white">Made with ❤️ for food lovers</span> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

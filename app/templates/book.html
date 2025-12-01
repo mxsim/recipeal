@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/book.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="book-page">
+
+  <div class="book-page__body">
+    <div class="book-page__main" role="main">
+      <div class="book-page__table" id="bookTable" aria-live="polite">
+        {% for recipe in recipes %}
+        <div class="book-page__row">
+
+          <a href="{{ url_for('recipe.recipe_page', recipe_id=recipe.id) }}">
+            <img class="book-page__img"
+                 src="{{ url_for('static', filename='images/' ~ (recipe.image or 'default_recipe.jpg')) }}"
+                 alt="{{ recipe.title }}">
+          </a>
+
+          <div class="book-page__info">
+            <div class="book-page__title">{{ recipe.title }}</div>
+            <div class="book-page__desc">{{ recipe.description or '' }}</div>
+          </div>
+
+          <button class="book-page__delete" data-id="{{ recipe.id }}">✕</button>
+        </div>
+        {% else %}
+        <div class="book-page__empty">No recipes yet.</div>
+        {% endfor %}
+      </div><!-- кнопка створення рецепта -->
+      <a href="{{ url_for('recipe.create_recipe_page') }}" class="book-page__create-btn">+ Add Recipe      </a>
+    </div> 
+
+      
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/book.js') }}"></script>
+{% endblock %}

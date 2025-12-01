@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/feed.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="feed-page">
+
+  <!-- MAIN SEARCH BAR -->
+  <div class="feed-page__main-search">
+    <input type="text" placeholder="Search recipes..." class="feed-page__main-search-input">
+  </div>
+
+  <!-- FILTERS SECTION -->
+  <div class="feed-page__filters">
+
+    <!-- Dish type filter -->
+    <div class="feed-page__filter">
+      <input type="text" class="feed-page__filter-search" placeholder="Search dish type...">
+      <div class="feed-page__filter-list">
+        {% for dish in dish_types %}
+          <div class="feed-page__filter-item {% if dish in selected_dish_types %}active{% endif %}">
+            {{ dish }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Country filter -->
+    <div class="feed-page__filter">
+      <input type="text" class="feed-page__filter-search" placeholder="Search country...">
+      <div class="feed-page__filter-list">
+        {% for country in countries %}
+          <div class="feed-page__filter-item {% if country in selected_countries %}active{% endif %}">
+            {{ country }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Tag filter -->
+    <div class="feed-page__filter">
+      <input type="text" class="feed-page__filter-search" placeholder="Search tags...">
+      <div class="feed-page__filter-list">
+        {% for tag in tags %}
+          <div class="feed-page__filter-item {% if tag in selected_tags %}active{% endif %}">
+            {{ tag }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RECIPES GRID -->
+<div class="feed-page__grid">
+  {% for recipe in recipes %}
+  <a href="{{ url_for('recipe.recipe_page', recipe_id=recipe.id) }}" class="feed-page__card-link">
+  <div class="feed-page__card" data-recipe-id="{{ recipe.id }}">
+    <img class="feed-page__card-img" src="{{ url_for('static', filename='images/' ~ (recipe.image or 'default_recipe.jpg')) }}" alt="{{ recipe.title }}">
+    <div class="feed-page__card-overlay">
+      <span class="feed-page__card-title">{{ recipe.title }}</span>
+    </div>
+  </div>
+  </a>
+  {% endfor %}
+</div>
+
+
+</div>
+{% endblock %}

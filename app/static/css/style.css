@@ -1,0 +1,190 @@
+/* Candy Crush Orange Theme */
+:root {
+    --primary-orange: #FF8C00;
+    --dark-orange: #FF6B00;
+    --light-orange: #FFA500;
+    --yellow: #FFD700;
+    --white: #FFFFFF;
+    --light-gray: #F8F9FA;
+    --dark-gray: #333333;
+}
+
+.bg-orange {
+    background-color: var(--primary-orange) !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--white) !important;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+}
+
+.navbar-brand img.logo-img {
+    height: 40px;
+    /* adjust as needed */
+    width: auto;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+/* Footer logo image */
+.footer-logo img.logo-img {
+    height: 80px;
+    /* bigger for footer */
+    width: auto;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+
+.logo-text {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.logo-reci {
+    color: #FF592B;
+}
+
+.logo-peal {
+    color: #E13B0D;
+}
+
+.navbar-nav .nav-link {
+    color: var(--white) !important;
+    font-weight: 500;
+    margin: 0 1rem;
+}
+
+.btn-yellow {
+    background-color: var(--yellow);
+    color: var(--dark-gray);
+    border: none;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+}
+
+/* Recipe Grid */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.recipe-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.2);
+}
+
+.recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recipe-info {
+    padding: 1rem;
+}
+
+.recipe-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: 0.5rem;
+}
+
+.recipe-rating {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-orange);
+}
+
+/* Search Section */
+.search-section {
+    background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
+    padding: 3rem 0;
+    color: var(--white);
+}
+
+.search-input {
+    border: none;
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Meal Filters */
+.meal-filters {
+    padding: 1.5rem 0;
+    background: var(--white);
+}
+
+.filter-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+}
+
+.filter-btn {
+    background: var(--white);
+    border: 2px solid var(--primary-orange);
+    color: var(--primary-orange);
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary-orange);
+    color: var(--white);
+}
+
+.footer {
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 0.75rem;
+    font-weight: 500;
+}
+
+.main-nav a.fridge-btn {
+    background: #eaf7ff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+}
+
+.main-nav a.fridge-btn:hover {
+    background: #d2efff;
+}
+
+

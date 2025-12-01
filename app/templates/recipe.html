@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/recipe.css') }}"
+/>
+{% endblock %} {% block content %}
+<input type="hidden" name="recipe_id" value="{{ recipe.id }}" />
+<div class="recipe-page">
+  <div class="recipe-page__container">
+    <!-- LEFT: Recipe info + portion counter -->
+    <div class="recipe-page__info">
+      <h2 class="recipe-page__title">{{ recipe.title }}</h2>
+      <p class="recipe-page__description">{{ recipe.description }}</p>
+      <hr class="recipe-page__divider">
+
+      {% if recipe.ingredients %}
+      <div class="recipe-page__ingredients">
+        {% for ing in recipe.ingredients %}
+        <div class="recipe-page__ingredient">
+          • {{ ing.name }}: {{ ing.amount }} {{ ing.unit }}{% if not loop.last
+          %};{% else %}.{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <hr class="recipe-page__divider">
+
+      <div class="recipe-page__nutrition">
+        <div>
+          Calories:
+          <span id="calories">{{ recipe.nutrition.calories|round(1) }}</span>
+          kcal
+        </div>
+        <div>
+          Proteins:
+          <span id="proteins">{{ recipe.nutrition.proteins|round(1) }}</span> g
+        </div>
+        <div>
+          Fats: <span id="fats">{{ recipe.nutrition.fats|round(1) }}</span> g
+        </div>
+        <div>
+          Carbs: <span id="carbs">{{ recipe.nutrition.carbs|round(1) }}</span> g
+        </div>
+      </div>
+      <hr class="recipe-page__divider">
+
+      <div class="recipe-page__portions">
+        <button id="portionMinus">-</button>
+        <input
+          type="number"
+          id="portionCounter"
+          value="{{ recipe.servings }}"
+          min="1"
+          max="50"
+        />
+        <button id="portionPlus">+</button>
+        <span>Portions</span>
+      </div>
+    </div>
+
+    <!-- MIDDLE: Recipe image + hover instructions -->
+    <div class="recipe-page__image-container">
+      {% if recipe.image %}
+      <div class="recipe-page__image-overlay">
+        <img
+          src="{{ url_for('static', filename='images/' + recipe.image) }}"
+          alt="{{ recipe.title }}"
+        />
+        <div class="recipe-page__instructions">
+          <pre>{{ recipe.instructions }}</pre>
+        </div>
+      </div>
+      {% else %}
+      <div class="recipe-page__image-overlay recipe-page__placeholder">
+        <p>No image available</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: Creator + comments -->
+    <div class="recipe-page__sidebar">
+      <div class="recipe-page__creator">
+        <img
+          class="recipe-page__creator-img"
+          src="{{ url_for('static', filename='images/default_user.png') }}"
+          alt="{{ recipe.user.display_name }}"
+        />
+        <span>{{ recipe.user.display_name }}</span>
+      </div>
+
+      <div class="recipe-page__comments">
+        <h3>Comments</h3>
+        <div id="commentsContainer">
+          {% for comment in comments %}
+          <div class="recipe-page__comment" data-comment-id="{{ comment.id }}">
+            <img
+              src="{{ url_for('static', filename='images/default_user.png') }}"
+              alt="{{ comment.user.display_name }}"
+            />
+            <div class="recipe-page__comment-content">
+              <strong>{{ comment.user.display_name }}</strong>
+              <span>{{ comment.content }}</span>
+            </div>
+            {% if comment.user.id == current_user.id %}
+            <button class="comment-delete-btn">X</button>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="recipe-page__comment-input">
+          <input type="text" id="newComment" placeholder="Add a comment" />
+          <button id="sendComment">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/recipe.js') }}"></script>
+{% endblock %}
